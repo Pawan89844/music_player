@@ -9,6 +9,7 @@ class MusicApp extends StatelessWidget {
     return MaterialApp(
       title: 'Music Player',
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFF1F2F7),
         useMaterial3: true,
       ),
       home: const Home(),
