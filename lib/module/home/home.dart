@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/data/songs/app_songs.dart';
+import 'package:music_player/module/player/player_screen.dart';
 import 'package:music_player/style/border/app_border.dart';
 
 class Home extends StatefulWidget {
@@ -63,6 +64,12 @@ class _HomeState extends State<Home> {
                 child: Card(
                   color: Colors.white,
                   child: ListTile(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (context) => PlayerScreen(),
+                    ),
                     leading: Image.network(_songs.songs[0].songThumbnail),
                     title: Text(_songs.songs[0].title),
                     subtitle: Text(_songs.songs[0].singer),
