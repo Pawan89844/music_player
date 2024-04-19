@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/data/songs/app_songs.dart';
+import 'package:music_player/style/border/app_border.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,12 +29,19 @@ class _HomeState extends State<Home> {
           itemCount: _songs.songs.length,
           itemBuilder: (context, index) {
             final songs = _songs.songs[index];
-            return Card(
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: AppBorders.kListTileBorder,
+                      right: AppBorders.kListTileBorder,
+                      left: AppBorders.kListTileBorder)),
               child: ListTile(
                 title: Text(songs.title),
                 subtitle: Text(songs.singer),
                 leading: Container(
-                  width: 80.0,
+                  width: 50.0,
+                  margin: const EdgeInsets.only(right: 8.0),
                   alignment: Alignment.center,
                   child: Image.network(songs.songThumbnail),
                 ),
