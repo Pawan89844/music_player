@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/constants/app_strings.dart';
 import 'package:music_player/data/songs/app_songs.dart';
 import 'package:music_player/module/player/player_screen.dart';
 import 'package:music_player/style/border/app_border.dart';
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: const Text('Good Morning'),
+        title: const Text(AppString.greeting),
         forceMaterialTransparency: true,
         titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20.0),

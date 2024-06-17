@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/constants/app_strings.dart';
 import 'package:music_player/module/home/home.dart';
+import 'package:music_player/style/theme/app_theme.dart';
 
 class MusicApp extends StatelessWidget {
   const MusicApp({super.key});
@@ -7,11 +9,8 @@ class MusicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Music Player',
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF1F2F7),
-        useMaterial3: true,
-      ),
+      title: AppString.appName,
+      theme: AppTheme().activeTheme(),
       home: const Home(),
     );
   }
