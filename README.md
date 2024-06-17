@@ -1,6 +1,6 @@
 ## MUSIC PLAYER
 
-# version 1.0 Features
+## version 1.0 Features
 
 1. List of songs
 2. Add & Remove Favourite
