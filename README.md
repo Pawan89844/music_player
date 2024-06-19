@@ -7,4 +7,4 @@
 3. Sticked Player
 4. Play, Pause, Next, Previous, Shuffle, Repeat.
 5. Song Slider and Duration.
-6. Shareable song.
+6. Shareable songs.

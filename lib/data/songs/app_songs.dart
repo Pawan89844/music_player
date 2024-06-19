@@ -8,7 +8,7 @@ class AppSongs {
         singer: 'Selena Gomez',
         songThumbnail:
             'https://img.wynk.in/unsafe/248x248/filters:no_upscale():strip_exif():format(webp)/http://s3.ap-south-1.amazonaws.com/wynk-music-cms/srch_universalmusic/00602465223705_20240223001105390/1708651212950/24UMGIM13716_T1_cvrart.jpg',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalsongs.com.in/download?id=7348',
         isFavourite: false),
     SongsModel(
         id: 1,

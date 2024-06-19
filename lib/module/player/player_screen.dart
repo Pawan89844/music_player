@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/data/songs/app_songs.dart';
+import 'package:music_player/module/player/mixins/player_config.dart';
 
-class PlayerScreen extends StatelessWidget {
-  PlayerScreen({super.key});
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({super.key});
+
+  @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> with PlayerConfig {
   final AppSongs _songs = AppSongs();
 
   @override
@@ -89,12 +96,15 @@ class PlayerScreen extends StatelessWidget {
                     icon: const Icon(
                       CupertinoIcons.backward_fill,
                     )),
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 25.0,
                   backgroundColor: Colors.black,
-                  child: Icon(
-                    CupertinoIcons.pause,
-                    color: Colors.white,
+                  child: InkWell(
+                    onTap: () => playSong(_songs.songs[0].songUrl),
+                    child: const Icon(
+                      CupertinoIcons.pause,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 IconButton(
