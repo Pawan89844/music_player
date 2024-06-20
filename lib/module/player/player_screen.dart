@@ -34,10 +34,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     singer: _songs.songs[0].singer),
                 const Spacer(),
                 PlayingPositionBar(
-                    duration: value.songDuration.isNotEmpty
-                        ? value.songDuration
-                        : '0:00',
-                    currentPosition: '0:00'),
+                    duration: value.songDuration, currentPosition: '0:00'),
                 PlayingControls(
                     play: () => value.togglePlay(_songs.songs[0].songUrl)),
                 const SizedBox(height: 20.0),

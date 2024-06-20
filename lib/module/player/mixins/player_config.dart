@@ -1,11 +1,23 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
 mixin PlayerConfig {
   final _Player _player = _Player();
   String songDuration = '';
+  bool isPlaying = false;
+
+  IconData selectedIcon(bool isPlaying) {
+    if (!isPlaying) {
+      return CupertinoIcons.pause;
+    } else {
+      return CupertinoIcons.play;
+    }
+  }
 
   void togglePlay(String url) {
     _player.togglePlay(url);
+    isPlaying = _player.isPlaying();
   }
 
   void playSong(String songUrl) async {
@@ -13,7 +25,7 @@ mixin PlayerConfig {
     if (!_player.isPlaying()) {
       await _player.audioPlayer.play();
       songDuration = _player.songDuration;
-      print('Duration : $songDuration');
+      isPlaying = _player.isPlaying();
     }
   }
 }
@@ -35,7 +47,6 @@ class _Player {
     if (duration != null) {
       String inMinutes = duration.abs().toString();
       songDuration = inMinutes.substring(2, 7);
-      print('String: $songDuration');
       // await audioPlayer.play();
     }
   }

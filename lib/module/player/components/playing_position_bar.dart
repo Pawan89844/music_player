@@ -21,7 +21,7 @@ class PlayingPositionBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(currentPosition),
-              Text(duration),
+              Text(duration.isEmpty ? '0:00' : duration),
             ],
           ),
         ),

@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<PlayerViewModel>(context);
+    // print('Status: ${provider.isPlaying}');
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -88,7 +89,7 @@ class _HomeState extends State<Home> {
                     trailing: IconButton(
                         onPressed: () =>
                             provider.togglePlay(_songs.songs[0].songUrl),
-                        icon: const Icon(CupertinoIcons.pause)),
+                        icon: Icon(provider.selectedIcon(provider.isPlaying))),
                   ),
                 ),
               ),
