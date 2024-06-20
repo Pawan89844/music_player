@@ -6,7 +6,6 @@ import 'package:music_player/module/player/components/playing_controls.dart';
 import 'package:music_player/module/player/components/playing_position_bar.dart';
 import 'package:music_player/module/player/components/playing_song_info.dart';
 import 'package:music_player/module/player/components/playing_thumbnail.dart';
-import 'package:music_player/module/player/mixins/player_config.dart';
 import 'package:music_player/module/player/view%20model/player_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,17 +16,12 @@ class PlayerScreen extends StatefulWidget {
   State<PlayerScreen> createState() => _PlayerScreenState();
 }
 
-class _PlayerScreenState extends State<PlayerScreen> with PlayerConfig {
+class _PlayerScreenState extends State<PlayerScreen> {
   final AppSongs _songs = AppSongs();
 
   @override
   void initState() {
     super.initState();
-    if (!mounted) {
-      var provider = Provider.of<PlayerViewModel>(context, listen: false);
-      provider.playSong(_songs.songs[0].songUrl);
-      provider.duration();
-    }
   }
 
   @override
@@ -49,7 +43,7 @@ class _PlayerScreenState extends State<PlayerScreen> with PlayerConfig {
                 const Spacer(),
                 const PlayingPositionBar(),
                 PlayingControls(
-                    play: () => value.playSong(_songs.songs[0].songUrl)),
+                    play: () => value.togglePlay(_songs.songs[0].songUrl)),
                 const SizedBox(height: 20.0),
               ],
             );

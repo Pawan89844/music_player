@@ -3,10 +3,24 @@ import 'package:just_audio/just_audio.dart';
 mixin PlayerConfig {
   final _Player _player = _Player();
 
-  _Player get player => _player;
-
   void playSong(String url) {
     _player.playSong(url);
+  }
+
+  void play() async {
+    await _player.audioPlayer.play();
+  }
+
+  void pauseSong() async {
+    await _player.audioPlayer.pause();
+  }
+
+  bool isPlaying() {
+    return _player.audioPlayer.playerState.playing;
+  }
+
+  bool isInitialized() {
+    return _player.audioPlayer.duration == null;
   }
 
   String? duration() {
@@ -27,7 +41,7 @@ class _Player {
   }
 
   Future<Duration?> _initPlayer(String url) async {
-    var duration = await audioPlayer.setUrl(url);
+    Duration? duration = await audioPlayer.setUrl(url);
     return _setDuration(duration);
   }
 
