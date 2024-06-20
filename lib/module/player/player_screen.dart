@@ -28,10 +28,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
             return Column(
               children: [
                 // const PlayingAppBar(),
-                PlayingThumbnail(thumbnailUrl: _songs.songs[0].songThumbnail),
+                PlayingThumbnail(
+                    thumbnailUrl:
+                        _songs.songs[value.currentPlaying].songThumbnail),
                 PlayingSongInfo(
-                    title: _songs.songs[0].title,
-                    singer: _songs.songs[0].singer),
+                    title: _songs.songs[value.currentPlaying].title,
+                    singer: _songs.songs[value.currentPlaying].singer),
                 const Spacer(),
                 PlayingPositionBar(
                     duration: value.songDuration, currentPosition: '0:00'),
