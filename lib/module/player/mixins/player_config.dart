@@ -1,18 +1,40 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 
 mixin PlayerConfig {
   final _Player _player = _Player();
 
+  _Player get player => _player;
+
   void playSong(String url) {
-    _player.initPlayer(url);
+    _player.playSong(url);
+  }
+
+  String? duration() {
+    String? duration = _player._songDuration?.abs().toString();
+    return duration;
   }
 }
 
 class _Player {
   AudioPlayer audioPlayer = AudioPlayer();
+  Duration? _songDuration;
 
-  void initPlayer(String url) async {
-    UrlSource source = UrlSource(url);
-    await audioPlayer.play(source);
+  Duration? get duration => _songDuration;
+
+  Duration? _setDuration(Duration? sDuration) {
+    _songDuration = sDuration;
+    return _songDuration;
+  }
+
+  Future<Duration?> _initPlayer(String url) async {
+    var duration = await audioPlayer.setUrl(url);
+    return _setDuration(duration);
+  }
+
+  void playSong(String songUrl) async {
+    Duration? duration = await _initPlayer(songUrl);
+    if (duration != null) {
+      await audioPlayer.play();
+    }
   }
 }
