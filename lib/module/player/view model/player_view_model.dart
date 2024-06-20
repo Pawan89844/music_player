@@ -10,8 +10,13 @@ class PlayerViewModel extends ChangeNotifier with PlayerConfig {
 
   @override
   void playSong(String songUrl) {
-    print('Privider Method Called');
     super.playSong(songUrl);
+    notifyListeners();
+  }
+
+  @override
+  void togglePlay(String url) {
+    super.togglePlay(url);
     notifyListeners();
   }
 }

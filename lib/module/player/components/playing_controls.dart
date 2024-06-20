@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/module/player/view%20model/player_view_model.dart';
+import 'package:provider/provider.dart';
 
 class PlayingControls extends StatelessWidget {
   final void Function()? play;
@@ -8,6 +9,7 @@ class PlayingControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var value = Provider.of<PlayerViewModel>(context);
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Row(
@@ -20,13 +22,14 @@ class PlayingControls extends StatelessWidget {
               icon: const Icon(
                 CupertinoIcons.backward_fill,
               )),
-          CircleAvatar(
-            radius: 25.0,
-            backgroundColor: Colors.black,
-            child: InkWell(
-              onTap: play,
-              child: const Icon(
-                CupertinoIcons.pause,
+          InkWell(
+            onTap: play,
+            borderRadius: BorderRadius.circular(20.0),
+            child: CircleAvatar(
+              radius: 25.0,
+              backgroundColor: Colors.black,
+              child: Icon(
+                value.selectedIcon(value.isPlaying),
                 color: Colors.white,
               ),
             ),
