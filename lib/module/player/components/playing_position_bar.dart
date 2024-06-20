@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PlayingPositionBar extends StatelessWidget {
-  const PlayingPositionBar({super.key});
+  final String duration, currentPosition;
+  const PlayingPositionBar(
+      {super.key, required this.duration, required this.currentPosition});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +15,13 @@ class PlayingPositionBar extends StatelessWidget {
           activeColor: Colors.black,
           thumbColor: Colors.white,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('1:46'),
-              Text('3:40'),
+              Text(currentPosition),
+              Text(duration),
             ],
           ),
         ),

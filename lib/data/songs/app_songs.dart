@@ -16,7 +16,7 @@ class AppSongs {
         singer: 'Ariana Grande',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F08e2633706582e13bc20f44637441996.1000x1000x1.png',
-        songUrl: 'https://mr-jat.in/dlod/6413/320',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 2,
@@ -24,7 +24,7 @@ class AppSongs {
         singer: 'Djo',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2Fa713a35d802965e554663a8e262b6789.1000x1000x1.jpg',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 3,
@@ -32,7 +32,7 @@ class AppSongs {
         singer: 'Modern Talking',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2Fce824afeae1a66ede213d56c892036f3.1000x1000x1.png',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 4,
@@ -40,7 +40,7 @@ class AppSongs {
         singer: 'Ariana Grande',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F08e2633706582e13bc20f44637441996.1000x1000x1.png',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 5,
@@ -48,7 +48,7 @@ class AppSongs {
         singer: 'Masego, FKJ',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F4b91bd2e7b587c89283558290a288a44.1000x1000x1.jpg',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 6,
@@ -56,7 +56,7 @@ class AppSongs {
         singer: '-',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F1e296c4dadc7afaeaaa12a0f52cea725.500x500x1.jpg',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 7,
@@ -64,7 +64,7 @@ class AppSongs {
         singer: 'Amaarae',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2Faf467a774c51b173ce771f0276d1b2bd.999x999x1.png',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 8,
@@ -72,7 +72,7 @@ class AppSongs {
         singer: 'Jack Harlow',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F24e304c51642a72f7ed46d57b03aa0a3.1000x1000x1.png',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
     SongsModel(
         id: 9,
@@ -80,7 +80,7 @@ class AppSongs {
         singer: 'The Weeknd, JANNIE',
         songThumbnail:
             'https://t2.genius.com/unsafe/378x378/https%3A%2F%2Fimages.genius.com%2F8243828b76aa0970827c23e8c9ae6b87.1000x1000x1.png',
-        songUrl: 'pagalsongs.com.in/download?id=7348',
+        songUrl: 'https://pagalnew.com/download320/34695',
         isFavourite: false),
   ];
 }
