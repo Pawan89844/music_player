@@ -12,35 +12,58 @@ class PlayingPositionBar extends StatelessWidget {
     var value = Provider.of<PlayerViewModel>(context);
     String replacedDuration = duration.replaceFirst(':', '.');
     double? doubleDuration = double.tryParse(replacedDuration);
-    return StreamBuilder<Duration?>(
-        stream: value.currentPosition().first.asStream(),
-        builder: (context, snapshot) {
-          double parsedDuration = value.convertDuration(
-              snapshot.data ?? const Duration(minutes: 0, seconds: 0));
-          print('Duration: $parsedDuration');
-          return Column(
+    return Column(
+      children: [
+        Slider(
+          max: doubleDuration ??= 1.0,
+          value: 1.0,
+          onChanged: (double value) {
+            print('Value: $value');
+          },
+          activeColor: Colors.black,
+          thumbColor: Colors.white,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Slider(
-                max: doubleDuration ??= 0.2,
-                value: parsedDuration,
-                onChanged: (double value) {
-                  print('Value: $value');
-                },
-                activeColor: Colors.black,
-                thumbColor: Colors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(currentPosition),
-                    Text(duration.isEmpty ? '0:00' : duration),
-                  ],
-                ),
-              ),
+              Text(currentPosition),
+              Text(duration.isEmpty ? '0:00' : duration),
             ],
-          );
-        });
+          ),
+        ),
+      ],
+    );
+    // return StreamBuilder<Duration?>(
+    //     stream: value.currentPosition().first.asStream(),
+    //     builder: (context, snapshot) {
+    //       double parsedDuration = value.convertDuration(
+    //           snapshot.data ?? const Duration(minutes: 0, seconds: 0));
+    //       print('Duration: $parsedDuration');
+    //       return Column(
+    //         children: [
+    //           Slider(
+    //             max: doubleDuration ??= 0.2,
+    //             value: parsedDuration,
+    //             onChanged: (double value) {
+    //               print('Value: $value');
+    //             },
+    //             activeColor: Colors.black,
+    //             thumbColor: Colors.white,
+    //           ),
+    //           Padding(
+    //             padding: const EdgeInsets.symmetric(horizontal: 24.0),
+    //             child: Row(
+    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //               children: [
+    //                 Text(currentPosition),
+    //                 Text(duration.isEmpty ? '0:00' : duration),
+    //               ],
+    //             ),
+    //           ),
+    //         ],
+    //       );
+    //     });
   }
 }

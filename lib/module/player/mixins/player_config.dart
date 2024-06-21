@@ -4,7 +4,7 @@ import 'package:just_audio/just_audio.dart';
 mixin PlayerConfig {
   final _Player _player = _Player();
   String songDuration = '';
-  bool isPlaying = false;
+  bool? isPlaying;
   bool isRepeat = false;
   bool isShuffle = false;
 
@@ -42,8 +42,10 @@ mixin PlayerConfig {
     }
   }
 
-  IconData selectedIcon(bool isPlaying) {
-    if (!isPlaying) {
+  IconData selectedIcon(bool? isPlaying) {
+    if (isPlaying == null) {
+      return CupertinoIcons.play;
+    } else if (!isPlaying) {
       return CupertinoIcons.pause;
     } else {
       return CupertinoIcons.play;
@@ -63,18 +65,20 @@ class _Player {
     return audioPlayer.playerState.playing;
   }
 
-  void playSong(String songUrl) async {
+  void playSong(String songUrl, {bool isInPlayer = false}) async {
     Duration? duration = await audioPlayer.setUrl(songUrl);
     if (duration != null) {
       String inMinutes = duration.abs().toString();
       songDuration = inMinutes.substring(2, 7);
-      // await audioPlayer.play();
+      if (isInPlayer) {
+        await audioPlayer.play();
+      }
     }
   }
 
   void togglePlay(String url) async {
     if (isInitialized()) {
-      playSong(url);
+      playSong(url, isInPlayer: true);
     } else if (!isPlaying() && !isInitialized()) {
       await audioPlayer.play();
     } else {
