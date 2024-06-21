@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
                     title: Text(songs.title),
                     onTap: () {
                       provider.currentPlaying = index;
-                      provider.playSong(songs.songUrl);
+                      provider.togglePlay(songs.songUrl);
                     },
                     subtitle: Text(songs.singer),
                     leading: Container(

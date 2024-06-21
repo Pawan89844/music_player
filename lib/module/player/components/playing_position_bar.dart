@@ -3,38 +3,45 @@ import 'package:music_player/module/player/view%20model/player_view_model.dart';
 import 'package:provider/provider.dart';
 
 class PlayingPositionBar extends StatelessWidget {
-  final String duration, currentPosition;
-  const PlayingPositionBar(
-      {super.key, required this.duration, required this.currentPosition});
+  // final String duration, currentPosition;
+  const PlayingPositionBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     var value = Provider.of<PlayerViewModel>(context);
-    String replacedDuration = duration.replaceFirst(':', '.');
-    double? doubleDuration = double.tryParse(replacedDuration);
-    return Column(
-      children: [
-        Slider(
-          max: doubleDuration ??= 1.0,
-          value: 1.0,
-          onChanged: (double value) {
-            print('Value: $value');
-          },
-          activeColor: Colors.black,
-          thumbColor: Colors.white,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StreamBuilder<Duration>(
+        stream: value.currentPosition(),
+        builder: (context, snapshot) {
+          double newPosition = value.convertDuration(
+              snapshot.data ?? const Duration(minutes: 0, seconds: 2));
+
+          return Column(
             children: [
-              Text(currentPosition),
-              Text(duration.isEmpty ? '0:00' : duration),
+              Slider(
+                max: 2.58,
+                value: newPosition,
+                onChanged: (double value) {},
+                activeColor: Colors.black,
+                thumbColor: Colors.white,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(newPosition.toString()),
+                    ValueListenableBuilder(
+                      valueListenable: value.songDuration,
+                      builder: (context, vl, child) {
+                        return Text(vl.isNotEmpty ? vl : '0:00');
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+        });
     // return StreamBuilder<Duration?>(
     //     stream: value.currentPosition().first.asStream(),
     //     builder: (context, snapshot) {
