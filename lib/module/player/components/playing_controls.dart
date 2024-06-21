@@ -16,7 +16,11 @@ class PlayingControls extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-              onPressed: () {}, icon: const Icon(CupertinoIcons.shuffle)),
+              onPressed: () => value.shuffleSong(),
+              icon: Icon(
+                CupertinoIcons.shuffle,
+                color: value.isShuffle ? Colors.black : Colors.black38,
+              )),
           IconButton(
               onPressed: () {},
               icon: const Icon(
@@ -36,7 +40,11 @@ class PlayingControls extends StatelessWidget {
           ),
           IconButton(
               onPressed: () {}, icon: const Icon(CupertinoIcons.forward_fill)),
-          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.repeat)),
+          IconButton(
+              onPressed: () => value.repeatSong(),
+              icon: Icon(value.isRepeat
+                  ? CupertinoIcons.repeat_1
+                  : CupertinoIcons.repeat)),
         ],
       ),
     );

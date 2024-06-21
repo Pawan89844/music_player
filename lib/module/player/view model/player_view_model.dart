@@ -15,4 +15,22 @@ class PlayerViewModel extends ChangeNotifier with PlayerConfig {
     super.togglePlay(url);
     notifyListeners();
   }
+
+  @override
+  void repeatSong() {
+    super.repeatSong();
+    notifyListeners();
+  }
+
+  @override
+  void shuffleSong() {
+    super.shuffleSong();
+    notifyListeners();
+  }
+
+  // @override
+  // double convertDuration(Duration duration) {
+  //   notifyListeners();
+  //   return super.convertDuration(duration);
+  // }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/constants/app_strings.dart';
 import 'package:music_player/data/songs/app_songs.dart';
@@ -28,6 +27,20 @@ class _HomeState extends State<Home> {
         forceMaterialTransparency: true,
         titleTextStyle: const TextStyle(
             fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20.0),
+      ),
+      bottomNavigationBar: ListTile(
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PlayerScreen(),
+            )),
+        leading:
+            Image.network(_songs.songs[provider.currentPlaying].songThumbnail),
+        title: Text(_songs.songs[provider.currentPlaying].title),
+        subtitle: Text(_songs.songs[provider.currentPlaying].singer),
+        trailing: IconButton(
+            onPressed: () => provider.togglePlay(_songs.songs[0].songUrl),
+            icon: Icon(provider.selectedIcon(provider.isPlaying))),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -65,32 +78,10 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20.0),
-                child: Card(
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PlayerScreen(),
-                        )),
-                    leading: Image.network(
-                        _songs.songs[provider.currentPlaying].songThumbnail),
-                    title: Text(_songs.songs[provider.currentPlaying].title),
-                    subtitle:
-                        Text(_songs.songs[provider.currentPlaying].singer),
-                    trailing: IconButton(
-                        onPressed: () =>
-                            provider.togglePlay(_songs.songs[0].songUrl),
-                        icon: Icon(provider.selectedIcon(provider.isPlaying))),
-                  ),
-                ),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: ,
+            // ),
           ],
         ),
       ),

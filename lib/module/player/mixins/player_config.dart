@@ -1,18 +1,31 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
 mixin PlayerConfig {
   final _Player _player = _Player();
   String songDuration = '';
   bool isPlaying = false;
+  bool isRepeat = false;
+  bool isShuffle = false;
 
-  IconData selectedIcon(bool isPlaying) {
-    if (!isPlaying) {
-      return CupertinoIcons.pause;
-    } else {
-      return CupertinoIcons.play;
-    }
+  void repeatSong() {
+    isRepeat = !isRepeat;
+  }
+
+  void shuffleSong() {
+    isShuffle = !isShuffle;
+  }
+
+  Stream<Duration?> currentPosition() {
+    return _player.audioPlayer.positionStream;
+  }
+
+  double convertDuration(Duration duration) {
+    String durationStr = duration.abs().toString();
+    String extratedDuration = durationStr.substring(2, 7);
+    String newDuration = extratedDuration.replaceFirst(':', '.');
+    double parsedDuration = double.parse(newDuration);
+    return parsedDuration;
   }
 
   void togglePlay(String url) {
@@ -26,6 +39,14 @@ mixin PlayerConfig {
       await _player.audioPlayer.play();
       songDuration = _player.songDuration;
       isPlaying = _player.isPlaying();
+    }
+  }
+
+  IconData selectedIcon(bool isPlaying) {
+    if (!isPlaying) {
+      return CupertinoIcons.pause;
+    } else {
+      return CupertinoIcons.play;
     }
   }
 }
