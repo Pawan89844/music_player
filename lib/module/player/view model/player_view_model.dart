@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_player/module/player/mixins/player_config.dart';
 
 class PlayerViewModel extends ChangeNotifier with PlayerConfig {
-  // void setDuration() async {
-  //   songDuration = await super.duration();
-  //   print('Build: $songDuration');
-  //   notifyListeners();
-  // }
+  int currentPlaying = 0;
 
   @override
   void playSong(String songUrl) {
@@ -19,4 +15,22 @@ class PlayerViewModel extends ChangeNotifier with PlayerConfig {
     super.togglePlay(url);
     notifyListeners();
   }
+
+  @override
+  void repeatSong() {
+    super.repeatSong();
+    notifyListeners();
+  }
+
+  @override
+  void shuffleSong() {
+    super.shuffleSong();
+    notifyListeners();
+  }
+
+  // @override
+  // double convertDuration(Duration duration) {
+  //   notifyListeners();
+  //   return super.convertDuration(duration);
+  // }
 }

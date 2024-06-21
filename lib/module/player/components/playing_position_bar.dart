@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/module/player/view%20model/player_view_model.dart';
+import 'package:provider/provider.dart';
 
 class PlayingPositionBar extends StatelessWidget {
   final String duration, currentPosition;
@@ -7,25 +9,38 @@ class PlayingPositionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Slider(
-          value: 0.2,
-          onChanged: (double value) {},
-          activeColor: Colors.black,
-          thumbColor: Colors.white,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    var value = Provider.of<PlayerViewModel>(context);
+    String replacedDuration = duration.replaceFirst(':', '.');
+    double? doubleDuration = double.tryParse(replacedDuration);
+    return StreamBuilder<Duration?>(
+        stream: value.currentPosition().first.asStream(),
+        builder: (context, snapshot) {
+          double parsedDuration = value.convertDuration(
+              snapshot.data ?? const Duration(minutes: 0, seconds: 0));
+          print('Duration: $parsedDuration');
+          return Column(
             children: [
-              Text(currentPosition),
-              Text(duration.isEmpty ? '0:00' : duration),
+              Slider(
+                max: doubleDuration ??= 0.2,
+                value: parsedDuration,
+                onChanged: (double value) {
+                  print('Value: $value');
+                },
+                activeColor: Colors.black,
+                thumbColor: Colors.white,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(currentPosition),
+                    Text(duration.isEmpty ? '0:00' : duration),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+        });
   }
 }
