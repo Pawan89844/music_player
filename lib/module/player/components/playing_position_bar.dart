@@ -14,7 +14,6 @@ class PlayingPositionBar extends StatelessWidget {
         builder: (context, snapshot) {
           double newPosition = value.convertDuration(
               snapshot.data ?? const Duration(minutes: 0, seconds: 2));
-
           return Column(
             children: [
               Slider(
