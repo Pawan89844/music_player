@@ -35,8 +35,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     title: _songs.songs[value.currentPlaying].title,
                     singer: _songs.songs[value.currentPlaying].singer),
                 const Spacer(),
-                PlayingPositionBar(
-                    duration: value.songDuration, currentPosition: '0:00'),
+                const PlayingPositionBar(),
                 PlayingControls(
                     play: () => value.togglePlay(_songs.songs[0].songUrl)),
                 const SizedBox(height: 20.0),
