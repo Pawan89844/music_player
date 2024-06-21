@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_cache/just_audio_cache.dart';
 
 mixin PlayerConfig {
   final _Player _player = _Player();
@@ -40,12 +41,13 @@ mixin PlayerConfig {
   }
 
   void _playSong(String songUrl) async {
-    Duration? duration = await _player.audioPlayer.setUrl(songUrl);
+    // Duration? duration = await _player.audioPlayer.setUrl(songUrl);
+    LockCachingAudioSource src = LockCachingAudioSource(Uri.parse(songUrl));
+    Duration? duration = await _player.audioPlayer.setAudioSource(src);
     if (duration != null) {
-      _player.audioPlayer.play();
+      await _player.audioPlayer.play();
       isPlaying = false;
       String inMinutes = duration.abs().toString();
-      // songDuration = inMinutes.substring(2, 7);
       songDuration.value = inMinutes.substring(2, 7);
     }
   }
