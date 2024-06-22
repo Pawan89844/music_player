@@ -20,28 +20,29 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Consumer<PlayerViewModel>(
-          builder: (context, value, __) {
-            return Column(
-              children: [
-                // const PlayingAppBar(),
-                PlayingThumbnail(
-                    thumbnailUrl:
-                        _songs.songs[value.currentPlaying].songThumbnail),
-                PlayingSongInfo(
-                    title: _songs.songs[value.currentPlaying].title,
-                    singer: _songs.songs[value.currentPlaying].singer),
-                const Spacer(),
-                const PlayingPositionBar(),
-                PlayingControls(
-                    play: () => value.togglePlay(_songs.songs[0].songUrl)),
-                const SizedBox(height: 20.0),
-              ],
-            );
-          },
+      // appBar: AppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Consumer<PlayerViewModel>(
+            builder: (context, value, __) {
+              return Column(
+                children: [
+                  PlayingThumbnail(
+                      thumbnailUrl:
+                          _songs.songs[value.currentPlaying].songThumbnail),
+                  const Spacer(),
+                  PlayingSongInfo(
+                      title: _songs.songs[value.currentPlaying].title,
+                      singer: _songs.songs[value.currentPlaying].singer),
+                  const PlayingPositionBar(),
+                  PlayingControls(
+                      play: () => value.togglePlay(_songs.songs[0].songUrl)),
+                  const SizedBox(height: 20.0),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
