@@ -31,7 +31,6 @@ class _PlayingPositionBarState extends State<PlayingPositionBar> {
             stream: value.currentPosition(),
             builder: (context, snapshot) {
               return Slider(
-                // max: 2.58,
                 value: (snapshot.data != null &&
                         value.duation != null &&
                         snapshot.data!.inMilliseconds > 0 &&
@@ -40,7 +39,7 @@ class _PlayingPositionBarState extends State<PlayingPositionBar> {
                     ? snapshot.data!.inMilliseconds /
                         value.duation!.inMilliseconds
                     : 0.0,
-                onChanged: (double value) {},
+                onChanged: value.changePosition,
                 activeColor: Colors.black,
                 thumbColor: Colors.white,
               );

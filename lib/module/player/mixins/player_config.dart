@@ -26,6 +26,15 @@ mixin PlayerConfig {
     isShuffle = !isShuffle;
   }
 
+  void changePosition(double value) {
+    final songDuration = duation;
+    if (songDuration == null) {
+      return;
+    }
+    final position = value * songDuration.inMilliseconds;
+    _player.audioPlayer.seek(Duration(milliseconds: position.round()));
+  }
+
   Stream<Duration> currentPosition() {
     return _player.audioPlayer.createPositionStream();
   }
@@ -80,11 +89,3 @@ class _Player {
     return audioPlayer.playerState.playing;
   }
 }
-
-// double convertDuration(Duration duration) {
-  //   String durationStr = duration.abs().toString();
-  //   String extratedDuration = durationStr.substring(2, 7);
-  //   String newDuration = extratedDuration.replaceFirst(':', '.');
-  //   double parsedDuration = double.parse(newDuration);
-  //   return parsedDuration;
-  // }
