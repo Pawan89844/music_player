@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class PlayingThumbnail extends StatelessWidget {
   final String thumbnailUrl;
@@ -6,12 +7,19 @@ class PlayingThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var query = MediaQuery.of(context).size;
     return Container(
-      height: 200.0,
+      height: query.height * .4,
       width: double.infinity,
       margin: const EdgeInsets.all(14.0),
       decoration: BoxDecoration(
-          image: DecorationImage(image: NetworkImage(thumbnailUrl))),
+        image: DecorationImage(
+            image: NetworkImage(thumbnailUrl),
+            fit: BoxFit.contain,
+            isAntiAlias: true,
+            filterQuality: FilterQuality.high),
+        shape: BoxShape.circle,
+      ),
     );
   }
 }
