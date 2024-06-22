@@ -1,19 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:just_audio_cache/just_audio_cache.dart';
 
 mixin PlayerConfig {
   final _Player _player = _Player();
-  ValueNotifier<String> songDuration = ValueNotifier<String>('');
+  Duration? duation;
   bool? isPlaying;
   bool isRepeat = false;
   bool isShuffle = false;
 
-  void repeatSong() {
+  void repeatSong() async {
+    if (isRepeat) {
+      await _player.audioPlayer.setLoopMode(LoopMode.one);
+    } else {
+      await _player.audioPlayer.setLoopMode(LoopMode.off);
+    }
     isRepeat = !isRepeat;
   }
 
-  void shuffleSong() {
+  void shuffleSong() async {
+    if (isShuffle) {
+      await _player.audioPlayer.setShuffleModeEnabled(true);
+    } else {
+      await _player.audioPlayer.setShuffleModeEnabled(false);
+    }
     isShuffle = !isShuffle;
   }
 
@@ -21,16 +30,16 @@ mixin PlayerConfig {
     return _player.audioPlayer.createPositionStream();
   }
 
-  double convertDuration(Duration duration) {
-    String durationStr = duration.abs().toString();
-    String extratedDuration = durationStr.substring(2, 7);
-    String newDuration = extratedDuration.replaceFirst(':', '.');
-    double parsedDuration = double.parse(newDuration);
-    return parsedDuration;
+  Stream<Duration?> getDuration() {
+    return _player.audioPlayer.durationStream.asBroadcastStream();
+  }
+
+  void setDuration() {
+    getDuration().first.then((value) => duation = value);
   }
 
   void togglePlay(String url) {
-    if (_player.isInitialized()) {
+    if (_player.isInitialized() && !_player.isPlaying()) {
       _playSong(url);
     } else if (!_player.isPlaying() && !_player.isInitialized()) {
       _player.audioPlayer.play();
@@ -41,14 +50,12 @@ mixin PlayerConfig {
   }
 
   void _playSong(String songUrl) async {
-    // Duration? duration = await _player.audioPlayer.setUrl(songUrl);
     LockCachingAudioSource src = LockCachingAudioSource(Uri.parse(songUrl));
     Duration? duration = await _player.audioPlayer.setAudioSource(src);
     if (duration != null) {
+      setDuration();
       await _player.audioPlayer.play();
-      isPlaying = false;
-      String inMinutes = duration.abs().toString();
-      songDuration.value = inMinutes.substring(2, 7);
+      // isPlaying = false;
     }
   }
 
@@ -73,3 +80,11 @@ class _Player {
     return audioPlayer.playerState.playing;
   }
 }
+
+// double convertDuration(Duration duration) {
+  //   String durationStr = duration.abs().toString();
+  //   String extratedDuration = durationStr.substring(2, 7);
+  //   String newDuration = extratedDuration.replaceFirst(':', '.');
+  //   double parsedDuration = double.parse(newDuration);
+  //   return parsedDuration;
+  // }

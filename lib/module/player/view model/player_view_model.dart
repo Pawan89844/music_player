@@ -28,6 +28,12 @@ class PlayerViewModel extends ChangeNotifier with PlayerConfig {
     notifyListeners();
   }
 
+  @override
+  void setDuration() {
+    super.setDuration();
+    notifyListeners();
+  }
+
   // @override
   // double convertDuration(Duration duration) {
   //   notifyListeners();
