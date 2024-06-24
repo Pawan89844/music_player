@@ -6,7 +6,6 @@ import 'package:music_player/module/home/components/for_you_component.dart';
 import 'package:music_player/module/home/components/stories_component.dart';
 import 'package:music_player/module/player/player_screen.dart';
 import 'package:music_player/module/player/view%20model/player_view_model.dart';
-import 'package:music_player/style/border/app_border.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

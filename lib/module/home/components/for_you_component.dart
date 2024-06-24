@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/songs/app_songs.dart';
@@ -43,10 +45,10 @@ class ForYouComponent extends StatelessWidget {
                       height: 120.0,
                       width: 140.0,
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(songs.songThumbnail),
-                          ),
-                          shape: BoxShape.circle),
+                        image: DecorationImage(
+                          image: NetworkImage(songs.songThumbnail),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 8.0),
                     Container(
